@@ -12,7 +12,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.apache</groupId>
@@ -194,6 +196,13 @@
   </properties>
 
 
+  <repositories>
+    <!-- http://xinzhuxiansheng.com/articleDetail/160 -->
+    <repository>
+      <id>spring</id>
+      <url>https://maven.aliyun.com/repository/spring</url>
+    </repository>
+  </repositories>
 
   <dependencyManagement>
     <dependencies>
@@ -280,12 +289,12 @@
         <artifactId>commons-codec</artifactId>
         <version>${commons-codec.version}</version>
       </dependency>
-       <dependency>
+      <dependency>
         <groupId>commons-collections</groupId>
         <artifactId>commons-collections</artifactId>
         <version>${commons-collections.version}</version>
       </dependency>
-     <dependency>
+      <dependency>
         <groupId>commons-httpclient</groupId>
         <artifactId>commons-httpclient</artifactId>
         <version>${commons-httpclient.version}</version>
@@ -467,7 +476,7 @@
         <artifactId>zookeeper</artifactId>
         <version>${zookeeper.version}</version>
         <exclusions>
-            <exclusion>
+          <exclusion>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
           </exclusion>
@@ -483,7 +492,7 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
           </exclusion>
-         <exclusion>
+          <exclusion>
             <groupId>org.jboss.netty</groupId>
             <artifactId>netty</artifactId>
           </exclusion>
@@ -583,19 +592,19 @@
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-client</artifactId>
         <version>${hadoop.version}</version>
-         <exclusions>
-           <exclusion>
+        <exclusions>
+          <exclusion>
             <groupId>commmons-logging</groupId>
             <artifactId>commons-logging</artifactId>
           </exclusion>
-         </exclusions>
-     </dependency>
+        </exclusions>
+      </dependency>
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-common</artifactId>
         <version>${hadoop.version}</version>
         <exclusions>
-            <exclusion>
+          <exclusion>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
           </exclusion>
@@ -622,8 +631,8 @@
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
         <version>${hadoop.version}</version>
-          <exclusions>
-            <exclusion>
+        <exclusions>
+          <exclusion>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
           </exclusion>
@@ -632,13 +641,13 @@
             <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
-     </dependency>
+      </dependency>
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-mapreduce-client-core</artifactId>
         <version>${hadoop.version}</version>
-         <exclusions>
-            <exclusion>
+        <exclusions>
+          <exclusion>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
           </exclusion>
@@ -647,7 +656,7 @@
             <artifactId>commons-logging</artifactId>
           </exclusion>
         </exclusions>
-     </dependency>
+      </dependency>
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-minikdc</artifactId>
@@ -954,8 +963,10 @@
             <LANG>en_US.UTF-8</LANG>
             <HADOOP_CLASSPATH>${test.tmp.dir}/conf:${basedir}/${hive.path.to.root}/conf</HADOOP_CLASSPATH>
             <HIVE_HADOOP_TEST_CLASSPATH>${test.hive.hadoop.classpath}</HIVE_HADOOP_TEST_CLASSPATH>
-            <SPARK_SUBMIT_CLASSPATH>${spark.home}/lib/spark-assembly-${spark.version}-hadoop2.4.0.jar:${test.hive.hadoop.classpath}</SPARK_SUBMIT_CLASSPATH>
-            <SPARK_OSX_TEST_OPTS>-Dorg.xerial.snappy.tempdir=/tmp -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib</SPARK_OSX_TEST_OPTS>
+            <SPARK_SUBMIT_CLASSPATH>
+              ${spark.home}/lib/spark-assembly-${spark.version}-hadoop2.4.0.jar:${test.hive.hadoop.classpath}</SPARK_SUBMIT_CLASSPATH>
+            <SPARK_OSX_TEST_OPTS>-Dorg.xerial.snappy.tempdir=/tmp
+              -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib</SPARK_OSX_TEST_OPTS>
             <PATH>${env.PATH}${test.extra.path}</PATH>
           </environmentVariables>
           <systemPropertyVariables>
@@ -990,7 +1001,8 @@
             <test.warehouse.dir>${test.warehouse.scheme}${test.warehouse.dir}</test.warehouse.dir>
             <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
             <!-- EnforceReadOnlyTables hook and QTestUtil -->
-            <test.src.tables>src,src1,srcbucket,srcbucket2,src_json,src_thrift,src_sequencefile,srcpart,alltypesorc,src_hbase,cbo_t1,cbo_t2,cbo_t3,src_cbo,part,lineitem</test.src.tables>
+            <test.src.tables>
+              src,src1,srcbucket,srcbucket2,src_json,src_thrift,src_sequencefile,srcpart,alltypesorc,src_hbase,cbo_t1,cbo_t2,cbo_t3,src_cbo,part,lineitem</test.src.tables>
             <java.security.krb5.conf>${test.tmp.dir}/conf/krb5.conf</java.security.krb5.conf>
             <!-- Required by spark to work around SPARK-14958 -->
             <antlr.version>${antlr.version}</antlr.version>
@@ -998,47 +1010,47 @@
         </configuration>
       </plugin>
       <plugin>
-	<groupId>org.apache.rat</groupId>
-	<artifactId>apache-rat-plugin</artifactId>
-	<version>0.10</version>
-	<configuration>
-	  <excludes>
-	    <exclude>data/**</exclude>
-	    <exclude>conf/**</exclude>
-	    <exclude>checkstyle/**</exclude>
-	    <exclude>bin/**</exclude>
-	    <exclude>itests/**</exclude>
-	    <exclude>docs/**</exclude>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.10</version>
+        <configuration>
+          <excludes>
+            <exclude>data/**</exclude>
+            <exclude>conf/**</exclude>
+            <exclude>checkstyle/**</exclude>
+            <exclude>bin/**</exclude>
+            <exclude>itests/**</exclude>
+            <exclude>docs/**</exclude>
             <exclude>**/README.md</exclude>
             <exclude>**/*.iml</exclude>
-	    <exclude>**/*.txt</exclude>
-	    <exclude>**/*.log</exclude>
-	    <exclude>**/*.arcconfig</exclude>
-	    <exclude>**/package-info.java</exclude>
-	    <exclude>**/*.properties</exclude>
-	    <exclude>**/*.q</exclude>
-	    <exclude>**/*.q.out</exclude>
-	    <exclude>**/*.xml</exclude>
-	    <exclude>**/gen/**</exclude>
-	    <exclude>**/scripts/**</exclude>
-	    <exclude>**/resources/**</exclude>
-	    <exclude>**/*.rc</exclude>
-	    <exclude>**/*.rcfile</exclude>
-	    <exclude>**/*.qv</exclude>
-	    <exclude>**/*.out</exclude>
-	    <exclude>**/RecordTestObj.java</exclude>
-	    <exclude>**/*.m</exclude>
-	    <exclude>**/gen-java/**</exclude>
-	    <exclude>**/testdata/**</exclude>
-	    <exclude>**/ptest2/*.md</exclude>
-	    <exclude>**/test/org/apache/hadoop/hive/hbase/avro/**</exclude>
-	    <exclude>**/avro_test.avpr</exclude>
-	    <exclude>**/xmlReport.pl</exclude>
-	    <exclude>**/*.html</exclude>
-	    <exclude>**/sit</exclude>
-      <exclude>**/test/queries/**/*.sql</exclude>
-	  </excludes>
-	</configuration>
+            <exclude>**/*.txt</exclude>
+            <exclude>**/*.log</exclude>
+            <exclude>**/*.arcconfig</exclude>
+            <exclude>**/package-info.java</exclude>
+            <exclude>**/*.properties</exclude>
+            <exclude>**/*.q</exclude>
+            <exclude>**/*.q.out</exclude>
+            <exclude>**/*.xml</exclude>
+            <exclude>**/gen/**</exclude>
+            <exclude>**/scripts/**</exclude>
+            <exclude>**/resources/**</exclude>
+            <exclude>**/*.rc</exclude>
+            <exclude>**/*.rcfile</exclude>
+            <exclude>**/*.qv</exclude>
+            <exclude>**/*.out</exclude>
+            <exclude>**/RecordTestObj.java</exclude>
+            <exclude>**/*.m</exclude>
+            <exclude>**/gen-java/**</exclude>
+            <exclude>**/testdata/**</exclude>
+            <exclude>**/ptest2/*.md</exclude>
+            <exclude>**/test/org/apache/hadoop/hive/hbase/avro/**</exclude>
+            <exclude>**/avro_test.avpr</exclude>
+            <exclude>**/xmlReport.pl</exclude>
+            <exclude>**/*.html</exclude>
+            <exclude>**/sit</exclude>
+            <exclude>**/test/queries/**/*.sql</exclude>
+          </excludes>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.jamon</groupId>
@@ -1062,8 +1074,10 @@
                 <phase>generate-sources</phase>
                 <configuration>
                   <target>
-                    <taskdef name="for" classname="net.sf.antcontrib.logic.ForTask" classpathref="maven.plugin.classpath" />
-                    <property name="thrift.args" value="-I ${thrift.home} --gen java:beans,hashcode,generated_annotations=undated --gen cpp --gen php --gen py --gen rb" />
+                    <taskdef name="for" classname="net.sf.antcontrib.logic.ForTask"
+                      classpathref="maven.plugin.classpath" />
+                    <property name="thrift.args"
+                      value="-I ${thrift.home} --gen java:beans,hashcode,generated_annotations=undated --gen cpp --gen php --gen py --gen rb" />
                     <property name="thrift.gen.dir" value="${basedir}/src/gen/thrift" />
                     <delete dir="${thrift.gen.dir}" />
                     <mkdir dir="${thrift.gen.dir}" />
@@ -1074,7 +1088,8 @@
                       <sequential>
                         <echo message="Generating Thrift code for @{thrift.file}" />
                         <exec executable="${thrift.home}/bin/thrift" failonerror="true" dir=".">
-                          <arg line="${thrift.args} -I ${basedir}/include -I ${basedir}/.. -o ${thrift.gen.dir} @{thrift.file} " />
+                          <arg
+                            line="${thrift.args} -I ${basedir}/include -I ${basedir}/.. -o ${thrift.gen.dir} @{thrift.file} " />
                         </exec>
                       </sequential>
                     </for>
@@ -1151,7 +1166,7 @@
     </profile>
 
     <profile>
-    <id>findbugs</id>
+      <id>findbugs</id>
       <reporting>
         <plugins>
           <plugin>
@@ -1174,7 +1189,7 @@
       <activation>
         <os>
           <family>Windows</family>
-       </os>
+        </os>
       </activation>
       <build>
         <plugins>
@@ -1215,9 +1230,9 @@
     <profile>
       <id>spark-test</id>
       <activation>
-	<property>
+        <property>
           <name>!skipSparkTests</name>
-	</property>
+        </property>
       </activation>
       <properties>
         <skip.spark.files>
